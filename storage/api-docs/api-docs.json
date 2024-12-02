@@ -1,0 +1,69 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Secret Server API",
+        "description": "API for storing and retrieving secrets",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/secret": {
+            "post": {
+                "summary": "Store a new secret",
+                "description": "Save a secret with expiration and view limits.",
+                "operationId": "477398cf92177e72e2ef8f0fea906138",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "secret": {
+                                        "description": "The secret text",
+                                        "type": "string"
+                                    },
+                                    "expireAfterViews": {
+                                        "description": "Number of views allowed",
+                                        "type": "integer"
+                                    },
+                                    "expireAfter": {
+                                        "description": "Expiration time in minutes",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Secret successfully created"
+                    }
+                }
+            }
+        },
+        "/api/secret/{hash}": {
+            "get": {
+                "summary": "Retrieve a secret",
+                "description": "Retrieve a secret by its unique hash.",
+                "operationId": "fd60739ca875d85620ddacd751cbf9a8",
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "path",
+                        "description": "Unique hash to identify the secret",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Secret retrieved successfully"
+                    }
+                }
+            }
+        }
+    }
+}
