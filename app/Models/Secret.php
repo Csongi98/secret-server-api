@@ -19,5 +19,10 @@ class Secret extends Model
         'secret_text',
         'remaining_views',
         'expires_at',
+        'tags'
+    ];
+
+    protected $casts = [
+        'tags' => 'array',
     ];
 }

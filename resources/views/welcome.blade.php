@@ -65,19 +65,21 @@
                                             <h2 class="text-xl font-semibold text-black dark:text-white">Documentation</h2>
 
                                             <p class="mt-4 text-sm/relaxed">
-                                            Secret Server API is a powerful tool for securely storing and sharing sensitive information. With its innovative approach, you can create unique, randomly generated URLs for each secret, ensuring safe and controlled access.
-                                            </p><br/>
+                                                Secret Server API is a comprehensive and secure solution for storing, sharing, and managing sensitive information. With robust features and flexibility, it provides an efficient way to handle secrets with precise control and security.
+                                            </p>
+                                            <br/>
                                             <p><b>Key Features:</b></p>
                                             <br/>
                                             <ul>
-                                            <li><b>Time-Limited Access</b>: Each secret can have an optional time-to-live (TTL), after which it automatically expires.
-                                            </li>
-                                            <li><b>Read Limit Control</b>: Limit how many times a secret can be accessed before it becomes unavailable.
-                                            </li>
-                                            <li><b>Flexible Response Formats</b>: Supports responses in both JSON and XML to fit your needs.
-                                            </li>
-                                            <li><b>End-to-End Encryption</b>: All secrets are stored securely with encryption, ensuring your sensitive information is protected at all times.
-                                            </li>
+                                                <li><b>Time-Limited Access</b>: Each secret can have an optional time-to-live (TTL), after which it automatically expires.</li>
+                                                <li><b>Read Limit Control</b>: Limit how many times a secret can be accessed before it becomes unavailable.</li>
+                                                <li><b>Flexible Response Formats</b>: Supports responses in JSON, XML, and YAML to fit diverse needs.</li>
+                                                <li><b>End-to-End Encryption</b>: All secrets are securely encrypted, ensuring your sensitive information is protected at all times.</li>
+                                                <li><b>Search and Filter Secrets</b>: Easily search for secrets by creation date, expiration date, or remaining views.</li>
+                                                <li><b>Export Secrets</b>: Export all stored secrets in your preferred format (CSV, JSON, or YAML).</li>
+                                                <li><b>Audit Logs</b>: Track who accessed or created secrets and when, ensuring complete accountability.</li>
+                                                <li><b>Predefined Tags</b>: Classify secrets with tags like "personal" or "work" for better organization.</li>
+                                            </ul>
                                         </div>
                                     </div>
 

@@ -1,12 +1,13 @@
 swagger: "2.0"
 info:
-  description: "This is an API of a secret service. You can save your secret by using the API. You can restrict the access of a secret after the certen number of views or after a certen period of time."
+  description: "This is an API of a secret service. You can save your secret by using the API. You can restrict the access of a secret after the certain number of views or after a certain period of time."
   version: "1.0.0"
   title: "Secret Server API"
 host: "127.0.0.1:8000"
 basePath: "/api"
 tags:
 - name: "secret"
+  description: "Operations related to secrets"
   externalDocs:
     description: "Find out more"
     url: "http://swagger.io"
@@ -25,6 +26,7 @@ paths:
       produces:
       - "application/json"
       - "application/xml"
+      - "application/x-yaml"
       parameters:
       - in: "formData"
         name: "secret"
@@ -45,12 +47,11 @@ paths:
         format: "int32"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/Secret"
         405:
           description: "Invalid input"
-          
   /secret/{hash}:
     get:
       tags:
@@ -61,6 +62,7 @@ paths:
       produces:
       - "application/json"
       - "application/xml"
+      - "application/x-yaml"
       parameters:
       - name: "hash"
         in: "path"
@@ -69,18 +71,100 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/Secret"
         404:
           description: "Secret not found"
+  /secrets/search:
+    get:
+      tags:
+      - "secret"
+      summary: "Search secrets by metadata"
+      description: "Search secrets by creation date, expiration date, or remaining views"
+      operationId: "searchSecrets"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "created_from"
+        in: "query"
+        description: "Start date for creation date range"
+        required: false
+        type: "string"
+        format: "date-time"
+      - name: "created_to"
+        in: "query"
+        description: "End date for creation date range"
+        required: false
+        type: "string"
+        format: "date-time"
+      - name: "expires_from"
+        in: "query"
+        description: "Start date for expiration date range"
+        required: false
+        type: "string"
+        format: "date-time"
+      - name: "expires_to"
+        in: "query"
+        description: "End date for expiration date range"
+        required: false
+        type: "string"
+        format: "date-time"
+      - name: "remaining_views"
+        in: "query"
+        description: "Filter by remaining views"
+        required: false
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Secret"
+        400:
+          description: "Invalid query parameters"
+  /secrets/{id}/logs:
+    get:
+      tags:
+      - "secret"
+      summary: "Get audit logs for a secret"
+      description: "Retrieve audit logs showing who accessed or created the secret and when"
+      operationId: "getAuditLogs"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the secret"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                  format: "int32"
+                action:
+                  type: "string"
+                  description: "Action performed (e.g., created, accessed)"
+                timestamp:
+                  type: "string"
+                  format: "date-time"
 definitions:
   Secret:
     type: "object"
     properties:
       hash:
         type: "string"
-        description: "Unique hash to identify the secrets"
+        description: "Unique hash to identify the secret"
       secretText:
         type: "string"
         description: "The secret itself"

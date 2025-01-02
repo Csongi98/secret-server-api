@@ -37,7 +37,73 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Secret successfully created"
+                        "description": "Secret successfully created",
+                        "content": {
+                            "application/x-yaml": {
+                                "schema": {
+                                    "properties": {
+                                        "hash": {
+                                            "type": "string"
+                                        },
+                                        "secret_text": {
+                                            "type": "string"
+                                        },
+                                        "remaining_views": {
+                                            "type": "integer"
+                                        },
+                                        "expires_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "hash": {
+                                            "description": "Unique hash for the secret",
+                                            "type": "string"
+                                        },
+                                        "secret_text": {
+                                            "description": "Encrypted secret text",
+                                            "type": "string"
+                                        },
+                                        "remaining_views": {
+                                            "description": "Number of remaining views",
+                                            "type": "integer"
+                                        },
+                                        "expires_at": {
+                                            "description": "Expiration timestamp",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "properties": {
+                                        "hash": {
+                                            "type": "string"
+                                        },
+                                        "secret_text": {
+                                            "type": "string"
+                                        },
+                                        "remaining_views": {
+                                            "type": "integer"
+                                        },
+                                        "expires_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -60,7 +126,107 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Secret retrieved successfully"
+                        "description": "Secret retrieved successfully",
+                        "content": {
+                            "application/x-yaml": {
+                                "schema": {
+                                    "properties": {
+                                        "hash": {
+                                            "type": "string"
+                                        },
+                                        "secret_text": {
+                                            "type": "string"
+                                        },
+                                        "remaining_views": {
+                                            "type": "integer"
+                                        },
+                                        "expires_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "hash": {
+                                            "type": "string"
+                                        },
+                                        "secret_text": {
+                                            "type": "string"
+                                        },
+                                        "remaining_views": {
+                                            "type": "integer"
+                                        },
+                                        "expires_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "properties": {
+                                        "hash": {
+                                            "type": "string"
+                                        },
+                                        "secret_text": {
+                                            "type": "string"
+                                        },
+                                        "remaining_views": {
+                                            "type": "integer"
+                                        },
+                                        "expires_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Secret not found",
+                        "content": {
+                            "application/x-yaml": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Secret not found or expired"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Secret not found or expired"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Secret not found or expired"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
